@@ -28,9 +28,9 @@ $(function () {
     $('#check').on('click', function () {
         if (!finish) {
             var new_players = createAvatar();
+            displayLoad(size, map, new_players);
             for (var i = 0; i < new_players.length; i++) {
                 var new_player = new_players[i];
-                displayLoad(size, map, new_players);
                 result = judgeGoal(new_player, size, player_name, rows, clms);
                 finish = result.finish;
                 goal_player = result.player;
@@ -48,10 +48,9 @@ $(function () {
     function searchGoal() {
         if (!finish) {
             var new_players = createAvatar();
+            displayLoad(size, map, new_players);
             for (var i = 0; i < new_players.length; i++) {
                 var new_player = new_players[i];
-                displayLoad(size, map, new_players);
-                // result = judgeGoal(new_player, size);
                 result = judgeGoal(new_player, size, player_name, rows, clms);
                 finish = result.finish;
                 goal_player = result.player;

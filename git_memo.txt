@@ -1,0 +1,15 @@
+//memo
+
+git init
+git remote add origin git@github.com:m-mitsuhihide/apenxchardts
+
+git add
+git commit -m "first commit"
+
+git push origin master
+
+git branch -b develop
+
+git checkout master
+
+git merge develop
