@@ -1,6 +1,6 @@
 
 
-const CLICK_INTERVAL = 100;
+const CLICK_INTERVAL = 10;
 
 $(function () {
     var players = [];
