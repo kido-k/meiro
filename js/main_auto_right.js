@@ -38,7 +38,11 @@ $(function () {
 
     // });
 
-    $('#btn_auto').on('click', function () {
+    $('#step').on('click', function () {
+        step();
+    });
+
+    $('#auto').on('click', function () {
         auto();
     });
 
@@ -50,7 +54,17 @@ $(function () {
             displayLoad(size, map, player);
             finish = judgeGoal(player, size);
         }
-        setTimeout(function () { auto() }, CLICK_INTERVAL);
+        setTimeout(auto, CLICK_INTERVAL);
+    }
+
+    function step() {
+        if (!finish) {
+            const parm = movePlayer_auto(map, player, pre_move, btn);
+            player = parm.player;
+            pre_move = parm.pre_move;
+            displayLoad(size, map, player);
+            finish = judgeGoal(player, size);
+        }
     }
 });
 
@@ -253,7 +267,7 @@ function movePlayer_key(map, player, key) {
 };
 
 function showBtn() {
-    $('#btn').css({ display: 'inline-block' });
+    // $('#btn').css({ display: 'inline-block' });
     $('#btn_auto').css({ display: 'inline-block' });
 }
 
@@ -263,8 +277,8 @@ function makeLoad(size) {
         return;
     }
     $('#meiro').css({
-        'height': size * 10 + 'px',
-        'width': (size * 10) + 'px'
+        'height': size * 20 + 'px',
+        'width': (size * 20) + 'px'
     });
 
     const map = [];
@@ -346,19 +360,19 @@ function displayLoad(size, map, player) {
         const length = line.length;
         for (var n = 0; n < length; n++) {
             if (line[n] === 1) {
-                str += '<div class="w">';
+                str += '<div class="w"';
             } else if (i === 1 && n === 1) { //startポジション
-                str += '<div class="p s">';
+                str += '<div class="p s"';
             } else if (i + 2 === size && n + 2 === length) { //endポジション
-                str += '<div class="p e">';
+                str += '<div class="p e"';
             } else {
-                str += '<div class="p">';
+                str += '<div class="p"';
             }
             //playerがいる場所
             if (i === player.row && n === player.clm) {
-                str += '◎'
+                str += ' style="background-color:yellow" ';
             }
-            str += '</div>';
+            str += '></div>';
         }
         $('#meiro').append(str);
         str = "";

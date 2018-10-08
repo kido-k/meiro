@@ -54,10 +54,13 @@ $(function () {
                 var new_player = new_players[i];
                 // result = judgeGoal(new_player, size);
                 finish = judgeGoal(new_player, size, map);
+                if(finish === true){
+                    break;
+                }
             }
         }
         if (auto) {
-            setTimeout(function () { searchGoal() }, CLICK_INTERVAL);
+            setTimeout(searchGoal , CLICK_INTERVAL);
         }
     }
 
@@ -156,8 +159,8 @@ function makeLoad(size) {
         return;
     }
     $('#meiro').css({
-        'height': size * 10 + 'px',
-        'width': (size * 10) + 'px'
+        'height': size * 20 + 'px',
+        'width': (size * 20) + 'px'
     });
 
     const map = [];
@@ -252,22 +255,22 @@ function displayLoad(size, map, players) {
         const length = line.length;
         for (var n = 0; n < length; n++) {
             if (line[n] === 1) {
-                str += '<div class="w">';
+                str += '<div class="w"';
             } else if (i === 1 && n === 1) { //startポジション
-                str += '<div class="p s">';
+                str += '<div class="p s"';
             } else if (i + 2 === size && n + 2 === length) { //endポジション
-                str += '<div class="p e">';
+                str += '<div class="p e"';
             } else {
-                str += '<div class="p">';
+                str += '<div class="p"';
             }
             //playerがいる場所
             for (var j = 0; j < players.length; j++) {
                 var player = players[j];
                 if (i === player.row && n === player.clm) {
-                    str += '◎'
+                    str += ' style="background-color:yellow" '
                 }
             }
-            str += '</div>';
+            str += '></div>';
         }
         $('#meiro').append(str);
         str = "";
