@@ -32,7 +32,7 @@ $(function () {
         if (!finish) {
             var new_players = createAvatar();
             displayLoad(size, map, new_players);
-            for (var i = 0; i < new_players.length; i++) {
+            for (var i = 0; i < new_players.length; i+=1) {
                 var new_player = new_players[i];
                 finish = judgeGoal(new_player, size, map);
             }
@@ -50,7 +50,7 @@ $(function () {
         if (!finish) {
             var new_players = createAvatar();
             displayLoad(size, map, new_players);
-            for (var i = 0; i < new_players.length; i++) {
+            for (var i = 0; i < new_players.length; i+=1) {
                 var new_player = new_players[i];
                 // result = judgeGoal(new_player, size);
                 finish = judgeGoal(new_player, size, map);
@@ -66,10 +66,10 @@ $(function () {
 
     function createAvatar() {
         const new_players = [];
-        for (var i = 0; i < players.length; i++) {
+        for (var i = 0; i < players.length; i+=1) {
             const player = players[i];
             const movelist = checkDirection(map, player, player.pre_move);
-            for (var n = 0; n < movelist.length; n++) {
+            for (var n = 0; n < movelist.length; n+=1) {
                 var new_player = { ...player };
                 move = movelist[n];
                 var new_rows = [];
@@ -164,9 +164,9 @@ function makeLoad(size) {
     });
 
     const map = [];
-    for (var i = 0; i < size; i++) {
+    for (var i = 0; i < size; i+=1) {
         const line = [];
-        for (var n = 0; n < size; n++) {
+        for (var n = 0; n < size; n+=1) {
             if (i === 0 || i === size - 1 || n === 0
                 || n === size - 1 || n % 2 === 0 && i % 2 === 0) {
                 line.push(1); //1が壁
@@ -179,7 +179,7 @@ function makeLoad(size) {
     // return map;
 
     //これ以降は棒倒し処理
-    for (var r = 0; r < size; r++) { //rは行数
+    for (var r = 0; r < size; r+=1) { //rは行数
         if (r === 0 || (r + 1) === size) {
             continue;
         }
@@ -194,7 +194,7 @@ function makeLoad(size) {
         if (r >= 4) {
             direction = direction.slice(1); //topを削除
         }
-        for (var i = 0; i < line.length; i++) { //iは列数
+        for (var i = 0; i < line.length; i+=1) { //iは列数
             // 端っこは対象外
             if (i === 0 || (i + 1) === line.length || i % 2 === 1) {
                 continue;
@@ -202,7 +202,7 @@ function makeLoad(size) {
 
             direction = shuffleList(direction);
 
-            for (var j = 0; j < direction.length; j++) {
+            for (var j = 0; j < direction.length; j+=1) {
                 if (direction[j] === "top") {
                     if (map[r - 1][i] === 0) {
                         map[r - 1][i] = 1;
@@ -240,7 +240,7 @@ function displayLoadtoGoal(player, size, map) {
     track_clms = JSON.parse(player.clms);
     var goal_player = {};
     const goal_players = [];
-    for (var i = 0; i < track_rows.length; i++) {
+    for (var i = 0; i < track_rows.length; i+=1) {
         goal_player = {row:track_rows[i],clm:track_clms[i]};
         goal_players.push(goal_player);
     }
@@ -250,10 +250,10 @@ function displayLoadtoGoal(player, size, map) {
 function displayLoad(size, map, players) {
     $('#meiro').empty();
     var str = "";
-    for (var i = 0; i < size; i++) {
+    for (var i = 0; i < size; i+=1) {
         const line = map[i];
         const length = line.length;
-        for (var n = 0; n < length; n++) {
+        for (var n = 0; n < length; n+=1) {
             if (line[n] === 1) {
                 str += '<div class="w"';
             } else if (i === 1 && n === 1) { //startポジション
@@ -264,7 +264,7 @@ function displayLoad(size, map, players) {
                 str += '<div class="p"';
             }
             //playerがいる場所
-            for (var j = 0; j < players.length; j++) {
+            for (var j = 0; j < players.length; j+=1) {
                 var player = players[j];
                 if (i === player.row && n === player.clm) {
                     str += ' style="background-color:yellow" '
